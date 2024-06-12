@@ -1,0 +1,71 @@
+// Variable overrides first
+$primary: #f38b66;
+$secondary: #e09174;
+$light: #f0efe6;
+$enable-shadows: true;
+$prefix: "mo-";
+$font-size-root: 20px;
+// Then import Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+// custom code
+
+    :root {
+        background-color: #f0efe6;
+        background-image: url("../photos/cute2.png");
+        background-attachment: fixed;
+        background-size: 800px;
+        }
+        main {
+            background-color: #f0efe6;
+            font-family: "roboto";
+            h1,h3 {
+
+                text-align: center; 
+            }
+            h2, h3, h4, h5, h6 {
+                text-align: center; 
+                
+            }
+        }
+        section {
+background-image: url("../photos/cute2.png");
+background-attachment: fixed;
+background-size: 800px;
+}
+
+.error {
+    color: #e35752;
+}
+
+.form-container, .form-info {
+    width: 500px; /* Ajusta este valor según sea necesario */
+    transition:  0.5s ease-in-out;
+}
+
+.form-container {
+    overflow: hidden;
+    max-width: 0;
+    max-height: 0;
+}
+
+.form-container.show {
+    max-width: 500px; /* Ajusta este valor según sea necesario */
+    max-height: 500px;
+    border-style:solid;
+    border-color: $secondary;
+    border-radius: 8px;
+}
+.form-info{
+    max-width: 500px; /* Ajusta este valor según sea necesario */
+    max-height: 500px;
+
+}
+.form-info.hide{
+    overflow: hidden;
+    max-width: 0;
+    max-height: 0;
+}
+.news-container img {
+    max-width: 400px;
+}
