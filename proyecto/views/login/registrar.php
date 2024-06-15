@@ -34,7 +34,7 @@ if (!isset($_SESSION['role']) || (isset($_SESSION['role']) && $_SESSION['role'] 
 
 $fecha_alta = date('Y-m-d');
 
-$fecha_login = ('Y-m-d H:i:s'); //devolvera algo como 2024-05-30 17:12:34
+$fecha_login = date('Y-m-d H:i:s'); //devolvera algo como 2024-05-30 17:12:34
 
 // Protección contra XSS
 $user = strip_tags(htmlentities($user));

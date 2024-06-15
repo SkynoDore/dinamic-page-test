@@ -22,7 +22,7 @@
                             <a class="nav-link" href="/proyecto/views/citaciones.php">Citaciones</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/proyecto/views/login/logout">Cerrar sección</a>
+                            <a class="nav-link" href="/proyecto/views/login/logout.php">Cerrar sección</a>
                         </li>
                     </ul>
                 </div>

@@ -3,9 +3,9 @@
 
 // bd.php tambien
 
-
 if (isset($_POST['user_id']) && $_POST['user_id'] !== ''){
     $idUsuario = $_POST['user_id'];
+    $_SESSION['usuario_seleccionado'] = $_POST['user_id'];
 } else {
     $idUsuario = $_SESSION['usuario'];
 }
@@ -45,7 +45,6 @@ if ($stmt->num_rows > 0) {
             <option value="admin" <?php if ($role == 'admin') echo 'selected'; ?>>admin</option>
         </select><br>
     <?php } ?>
-
 
         <label for='nombre'>Nombre</label>
         <input required class="form-control" type="text" id="nombre" name="nombre" pattern="{3,30}" value='<?php echo htmlspecialchars($nombre); ?>'><br>

@@ -34,7 +34,7 @@ include('../config.php');
                     </div>
                     <div class="form-group">
                         <label for="password">contraseña</label>
-                        <input class="form-control" type="text" id="password" name="password" placeholder="******" required>
+                        <input class="form-control" type="password" id="password" name="password" placeholder="******" required>
 
                     </div>
                     <hr>

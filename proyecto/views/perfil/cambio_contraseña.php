@@ -23,7 +23,7 @@ if ($role == 'admin') {
     }
     $userStmt->close();
 }
-//esto es solamente si eres un usuario
+//seleccion usuario admin
 if (isset($_POST['user_id']) && $_POST['user_id'] !== '') {
     $idUsuario = $_POST['user_id'];
 

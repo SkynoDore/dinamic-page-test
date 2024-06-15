@@ -15,7 +15,7 @@ include('../config.php');
     <script src="../bootstrap-5.3.2-dist/js/bootstrap.min.js"></script>
     <!--Scripts JS-->
 
-    <title>La carta de oh-nigiris!</title>
+    <title>Hazte una cuenta ohnigiri!</title>
 </head>
 <body>
     <?php
@@ -26,7 +26,7 @@ include('../config.php');
 
             <div class="container bg-light py-5">
                 <h1>Eres nuevo? regístrate aquí</h1>
-                <p>Ya tiene cuenta? <a href="pagina_registro">Accede aquí</a></p>
+                <p>Ya tiene cuenta? <a href="pagina_login">Accede aquí</a></p>
                 <!--la funcion se llamara a cualquier cambio del formulario.-->
                 <form action="/proyecto/views/login/registrar.php" method="post">
                     <div class="form-group">
@@ -71,11 +71,11 @@ include('../config.php');
                     <hr>
                     <div class="form-group">
                         <label for="phone">Contraseña</label>
-                        <input class="form-control" type="text" id="password" name="password" placeholder="Se requiere mínimo 8 caracteres, una letra mayúscula y un numero" pattern="{8,60}" required>
+                        <input class="form-control" type="password" id="password" name="password" placeholder="Se requiere mínimo 8 caracteres, una letra mayúscula y un numero" pattern="{8,60}" required>
                     </div>
                     <div class="form-group">
                         <label for="phone">Vuelve a introducir la contraseña</label>
-                        <input class="form-control" type="text" id="password2" name="password2" placeholder="Se requiere mínimo 8 caracteres, una letra mayúscula y un numero" pattern="{8,60}" required>
+                        <input class="form-control" type="password" id="password2" name="password2" placeholder="Se requiere mínimo 8 caracteres, una letra mayúscula y un numero" pattern="{8,60}" required>
                     </div>
                     <hr>
                     

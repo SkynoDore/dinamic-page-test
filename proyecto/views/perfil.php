@@ -1,6 +1,7 @@
 <?php
 include('../config.php');
 session_start();
+$_SESSION['panel_admin'] = FALSE;
 ?>
 <!DOCTYPE html>
 <html lang="es">
