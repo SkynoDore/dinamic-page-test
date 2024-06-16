@@ -14,7 +14,7 @@ include('../config.php');
     <link rel="stylesheet" href="../style/main.css">
     <script src="../bootstrap-5.3.2-dist/js/bootstrap.min.js"></script>
     <!--Scripts JS-->
-
+    <script src="../scripts/togglePassword.js"></script>
     <title>La carta de oh-nigiris!</title>
 </head>
 
@@ -34,13 +34,21 @@ include('../config.php');
                     </div>
                     <div class="form-group">
                         <label for="password">contraseña</label>
-                        <input class="form-control" type="password" id="password" name="password" placeholder="******" required>
-
+                        <input class="form-control" type="password" id="passwordfield1" name="password" placeholder="******" required>
+                        
+                        <div class="form-check">         
+                        <label for="passwordCheck1">Ocultar/mostrar contraseña</label>
+                        <input class="form-check-input" type="checkbox" id="passwordCheck1">
+               
+                        </div>
                     </div>
                     <hr>
-                    
+
+                    <div class="form-check mb-2">
                     <label for="privacidad">Acepta nuestra <a href="#">política de privacidad?</a></label>
-                    <input type="checkbox" id="privacidad" name="privacidad" required>
+                    <input class="form-check-input" type="checkbox" id="privacidad" name="privacidad" required>
+                    </div>
+
                     <button class="btn btn-dark" type="submit" id="enviar">Enviar</button>
                     <button class="btn btn-dark" type="reset">Borrar</button>
                     

@@ -38,7 +38,7 @@ if ($role == 'admin') {
     <link rel="stylesheet" href="../style/main.css">
     <script src="../bootstrap-5.3.2-dist/js/bootstrap.min.js"></script>
     <!--Scripts JS-->
-
+    <script src="../scripts/togglePassword.js"></script>
     <title>Panel de admin</title>
 </head>
 
@@ -121,13 +121,21 @@ if ($role == 'admin') {
                                 </div>
                                 <hr>
                                 <div class="form-group">
-                                    <label for="phone">Contraseña</label>
-                                    <input class="form-control" type="password" id="password" name="password" placeholder="Se requiere mínimo 8 caracteres, una letra mayúscula y un numero" pattern="{8,60}" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Vuelve a introducir la contraseña</label>
-                                    <input class="form-control" type="password" id="password2" name="password2" placeholder="Se requiere mínimo 8 caracteres, una letra mayúscula y un numero" pattern="{8,60}" required>
-                                </div>
+                    <label for="passwordfield1">Contraseña</label>
+                    <input class="form-control" type="password" id="passwordfield1" name="password" placeholder="Se requiere mínimo 8 caracteres, una letra mayúscula y un numero" pattern="{8,60}" required>
+                </div>
+                <div class="form-check">
+                    <label for="passwordCheck1">Ocultar/mostrar contraseña</label>
+                    <input class="form-check-input" type="checkbox" id="passwordCheck1">
+                </div>
+                <div class="form-group">
+                    <label for="passwordfield2">Vuelve a introducir la contraseña</label>
+                    <input class="form-control" type="password" id="passwordfield2" name="password2" placeholder="Se requiere mínimo 8 caracteres, una letra mayúscula y un numero" pattern="{8,60}" required>
+                </div>
+                <div class="form-check">
+                    <label for="passwordCheck2">Ocultar/mostrar contraseña</label>
+                    <input class="form-check-input" type="checkbox" id="passwordCheck2">
+                </div>
                                 <hr>
 
                                 <label for="privacidad">Acepta nuestra <a href="#">política de privacidad?</a></label>
@@ -152,8 +160,6 @@ if ($role == 'admin') {
                 </select><br>
                 <button class="btn btn-dark" type="submit" id="enviar">Cambiar</button>
                         </form>
-
-          
                     </div>
                     
                     <?php include'perfil/mostrar_info.php' ?>
