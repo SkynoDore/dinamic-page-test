@@ -23,10 +23,10 @@ if ($role == 'admin') {
     }
     $userStmt->close();
 }
-//seleccion usuario admin
+
+// Seleccion usuario admin
 if (isset($_POST['user_id']) && $_POST['user_id'] !== '') {
-    
-    $idUsuario = $_SESSION['usuario_seleccionado'];
+    $idUsuario = $_POST['user_id'];
 
     // Obtener el usuario seleccionado
     $stmt = $conn->prepare('
@@ -41,9 +41,9 @@ if (isset($_POST['user_id']) && $_POST['user_id'] !== '') {
     $stmt->bind_result($usuarioSeleccionado, $roleSeleccionado);
     $stmt->fetch();
 
-    $_SESSION['usuarioseleccionado'] = $idUsuario;
-    $_SESSION['usuarioseleccionado_nombre'] = $usuarioSeleccionado;
-    $_SESSION['usuarioseleccionado_role'] = $roleSeleccionado;
+    $_SESSION['usuario_seleccionado'] = $idUsuario;
+    $_SESSION['usuario_seleccionado_nombre'] = $usuarioSeleccionado;
+    $_SESSION['usuario_seleccionado_role'] = $roleSeleccionado;
     $stmt->close();
 } else {
     $idUsuario = $_SESSION['usuario'];
@@ -69,67 +69,63 @@ if (isset($_POST['user_id']) && $_POST['user_id'] !== '') {
 
 <body>
     <main>
-
         <?php include('../../scripts/selector_de_barras.php'); ?>
         <div class="container">
             <?php include('../../scripts/mensaje_cambio.php'); ?>
             <form method="post" action="" class="p-3 my-3">
-                <?php if (isset($_SESSION['panel_admin']) && $_SESSION['panel_admin'] == TRUE) {
-                    echo '<label for="user_id">Seleccionar usuario a modificar:</label>
-        <select class="form-control" id="user_id" name="user_id" required>'; ?>
-                    <?php foreach ($users as $user) { ?>
-                        <option value="<?php echo htmlspecialchars($user['id']); ?>" <?php echo ($user['id'] == $idUsuario) ? 'selected' : ''; ?>>
-                            <?php echo htmlspecialchars($user['name']); ?>
-                        </option>
-                    <?php } ?>
-                <?php echo '
-        </select><br>
-        <button class="btn btn-dark" type="submit" id="enviar">Cambiarr</button>
-    ';
-                } 
-                $_SESSION['usuario_seleccionado'] = $_POST['user_id'];?>
-
+                <?php if ($role == 'admin') { ?>
+                    <label for="user_id">Seleccionar usuario a modificar:</label>
+                    <select class="form-control" id="user_id" name="user_id" required>
+                        <?php foreach ($users as $user) { ?>
+                            <option value="<?php echo htmlspecialchars($user['id']); ?>" <?php echo ($user['id'] == $idUsuario) ? 'selected' : ''; ?>>
+                                <?php echo htmlspecialchars($user['name']); ?>
+                            </option>
+                        <?php } ?>
+                    </select><br>
+                    <button class="btn btn-dark" type="submit" id="enviar">Cambiar</button>
+                    <?php if(isset($_POST['user_id']) && $_POST['user_id'] !== '')
+                    $_SESSION['usuario_seleccionado'] = $_POST['user_id']; ?>
+                <?php } ?>
             </form>
             <h1>Cambia tu contraseña</h1>
             <form action="/proyecto/views/perfil/actualizar_contraseña.php" method="post" class="py-2">
-                <?php if (isset($_SESSION['panel_admin']) && $_SESSION['panel_admin'] == TRUE) {
+                <?php if ($role == 'admin') {
                     echo "Ahora tiene seleccionado al $roleSeleccionado $usuarioSeleccionado <br>";
                 } ?>
                 <div class="form-group">
-                    <?php if (isset($_SESSION['panel_admin']) && $_SESSION['panel_admin'] == TRUE) {
+                    <?php if ($role == 'admin') {
                         echo 'Eres admin, no hace falta introducir contraseña vieja';
-                    } else {
-                        echo '
-            <label for="passwordCheck1">Contraseña vieja</label>
-            <input class="form-control" type="password" id="passwordCheck1" name="password" placeholder="Se requiere mínimo 8 caracteres, una letra mayúscula y un número" pattern=".{8,60}" required>
-        </div>
-                            <div class="form-check">
-                        <label for="passwordCheck3">Ocultar/mostrar contraseña</label>
-                        <input class="form-check-input" type="checkbox" id="passwordCheck3">
-                    </div>';
-                    } ?>
-                    <div class="form-group">
-                        <label for="passwordfield1">Contraseña</label>
-                        <input class="form-control" type="password" id="passwordfield1" name="passwordnueva" placeholder="Se requiere mínimo 8 caracteres, una letra mayúscula y un numero" pattern="{8,60}" required>
-                    </div>
-                    <div class="form-check">
-                        <label for="passwordCheck1">Ocultar/mostrar contraseña</label>
-                        <input class="form-check-input" type="checkbox" id="passwordCheck1">
-                    </div>
-                    <div class="form-group">
-                        <label for="passwordfield2">Vuelve a introducir la contraseña</label>
-                        <input class="form-control" type="password" id="passwordfield2" name="confirmacion" placeholder="Se requiere mínimo 8 caracteres, una letra mayúscula y un numero" pattern="{8,60}" required>
-                    </div>
-                    <div class="form-check">
-                        <label for="passwordCheck2">Ocultar/mostrar contraseña</label>
-                        <input class="form-check-input" type="checkbox" id="passwordCheck2">
-                    </div>
-                    <div class="p-3">
-                        <label for="confirmacion_check">¿Está seguro?</label>
-                        <input type="checkbox" id="confirmacion_check" name="confirmacion_check" required>
-                        <button class="btn btn-dark" type="submit">Actualizar Datos</button>
-                        <button class="btn btn-dark" type="reset">Reiniciar</button>
-                    </div>
+                    } else { ?>
+                        <label for="passwordfield3">Contraseña vieja</label>
+                        <input class="form-control" type="password" id="passwordfield3" name="password" placeholder="******" required>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="passwordCheck3">
+                            <label for="passwordCheck3">Ocultar/mostrar contraseña</label>
+                        </div>
+                    <?php } ?>
+                </div>
+                <div class="form-group">
+                    <label for="passwordfield1">Contraseña nueva</label>
+                    <input class="form-control" type="password" id="passwordfield1" name="passwordnueva" placeholder="Se requiere mínimo 8 caracteres, una letra mayúscula y un número" pattern=".{8,60}" required>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="passwordCheck1">
+                    <label for="passwordCheck1">Ocultar/mostrar contraseña</label>
+                </div>
+                <div class="form-group">
+                    <label for="passwordfield2">Confirmar contraseña nueva</label>
+                    <input class="form-control" type="password" id="passwordfield2" name="confirmacion" placeholder="Se requiere mínimo 8 caracteres, una letra mayúscula y un número" pattern=".{8,60}" required>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="passwordCheck2">
+                    <label for="passwordCheck2">Ocultar/mostrar contraseña</label>
+                </div>
+                <div class="p-3">
+                    <label for="confirmacion_check">¿Está seguro?</label>
+                    <input type="checkbox" id="confirmacion_check" name="confirmacion_check" required>
+                    <button class="btn btn-dark" type="submit">Actualizar Datos</button>
+                    <button class="btn btn-dark" type="reset">Reiniciar</button>
+                </div>
             </form>
         </div>
     </main>

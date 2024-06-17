@@ -5,8 +5,8 @@ session_start();
 include '../../scripts/bd.php';
 include('../../scripts/autentificador_usuario.php');
 
-if (isset($_SESSION['usuarioseleccionado']) && $_SESSION['usuarioseleccionado'] !== '') {
-    $idUsuario = $_SESSION['usuarioseleccionado'];
+if (isset($_SESSION['usuario_seleccionado']) && $_SESSION['usuario_seleccionado'] !== '') {
+    $idUsuario = $_SESSION['usuario_seleccionado'];
 } else {
     $idUsuario = $_SESSION['usuario'];
 }
@@ -25,10 +25,17 @@ if ($stmt->num_rows > 0) {
     // Limpiar y asignar valores a las variables
     $passwordnueva = trim(strip_tags(htmlentities($_POST["passwordnueva"])));
     $passwordconfirmacion = trim(strip_tags(htmlentities($_POST["confirmacion"])));
-    $password = trim(strip_tags(htmlentities($_POST["password"])));
+    $password = isset($_POST["password"]) ? trim(strip_tags(htmlentities($_POST["password"]))) : '';
 
     // Verificar si las contraseñas nuevas coinciden
     if ($passwordnueva === $passwordconfirmacion) {
+        // Verificar si la nueva contraseña es la misma que la vieja
+        if (password_verify($passwordnueva, $passwordvieja)) {
+            $_SESSION['error'] = "La nueva contraseña no puede ser igual a la contraseña actual.";
+            header('Location: /proyecto/views/perfil/cambio_contraseña.php');
+            exit();
+        }
+
         $hashed_pass = password_hash($passwordnueva, PASSWORD_DEFAULT);
 
         // Verificar si el usuario es administrador o si la contraseña vieja es correcta

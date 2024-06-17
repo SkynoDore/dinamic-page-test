@@ -6,7 +6,6 @@ if (isset($_SESSION['usuario'])) {
     $idUsuario = $_SESSION['usuario'];
     $role = $_SESSION['role'];
 }
-
 ?>
 
 <!DOCTYPE html>
