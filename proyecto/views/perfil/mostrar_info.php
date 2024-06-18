@@ -47,16 +47,16 @@ if ($stmt->num_rows > 0) {
     <?php } ?>
 
         <label for='nombre'>Nombre</label>
-        <input required class="form-control" type="text" id="nombre" name="nombre" pattern="{3,30}" value='<?php echo htmlspecialchars($nombre); ?>'><br>
+        <input required class="form-control" type="text" id="nombre" name="nombre" pattern="{3,30}" maxlength="30" value='<?php echo htmlspecialchars($nombre); ?>'><br>
 
         <label for='apellidos'>Apellidos</label>
-        <input required class="form-control" type="text" id="apellidos" name="apellidos" pattern="{3,30}" value='<?php echo htmlspecialchars($apellidos); ?>'><br>
+        <input required class="form-control" type="text" id="apellidos" name="apellidos" pattern="{3,30}" maxlength="30" value='<?php echo htmlspecialchars($apellidos); ?>'><br>
 
         <label for='email'>Email</label>
-        <input required class="form-control" type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" value='<?php echo htmlspecialchars($email); ?>'><br>
+        <input required class="form-control" type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" maxlength="45"value='<?php echo htmlspecialchars($email); ?>'><br>
 
         <label for='direccion'>Dirección</label>
-        <input required class="form-control" type="text" id="direccion" name="direccion" pattern="[a-zA-Z0-9._%+-]{5,255}" value='<?php echo htmlspecialchars($direccion); ?>'><br>
+        <input required class="form-control" type="text" id="direccion" name="direccion" pattern="[a-zA-Z0-9._%+-]{5,255}" maxlength="255" value='<?php echo htmlspecialchars($direccion); ?>'><br>
 
         <label for='telefono'>Teléfono</label>
         <input required class="form-control" type="text" id="telefono" name="telefono" pattern="[0-9]{9}" value='<?php echo htmlspecialchars($telefono); ?>'><br>

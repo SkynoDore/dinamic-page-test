@@ -5,12 +5,28 @@ include '../../scripts/bd.php';
 include('../../scripts/autentificador_usuario.php');
 
 $role = $_SESSION['role'];
-$currentUserId = $_SESSION['usuario'];
+$idUsuarioSesion = $_SESSION['usuario'];
+$nombreUsuarioSesion = '';
+$roleUsuarioSesion = '';
+
+// Obtener el nombre de usuario y el rol del usuario de la sesión
+$stmt = $conn->prepare('
+    SELECT l.usuario, l.role 
+    FROM usuarios u
+    JOIN logins l ON u.IdUsuario = l.idUsuarioFK
+    WHERE u.IdUsuario = ?
+');
+$stmt->bind_param('i', $idUsuarioSesion);
+$stmt->execute();
+$stmt->store_result();
+$stmt->bind_result($nombreUsuarioSesion, $roleUsuarioSesion);
+$stmt->fetch();
+$stmt->close();
 
 if ($role == 'admin') {
     // Obtener la lista de usuarios si es administrador
     $userStmt = $conn->prepare('
-        SELECT DISTINCT  u.IdUsuario, l.usuario, l.role 
+        SELECT DISTINCT u.IdUsuario, l.usuario, l.role 
         FROM usuarios u
         JOIN logins l ON u.IdUsuario = l.idUsuarioFK
     ');
@@ -26,46 +42,46 @@ if ($role == 'admin') {
 }
 
 if (isset($_POST['user_id']) && $_POST['user_id'] !== '') {
-    $idUsuario = $_POST['user_id'];
+    $idUsuarioSeleccionado = $_POST['user_id'];
 
     // Obtener el usuario seleccionado
     $stmt = $conn->prepare('
-        SELECT DISTINCT l.usuario, l.role 
+        SELECT l.usuario, l.role 
         FROM usuarios u
         JOIN logins l ON u.IdUsuario = l.idUsuarioFK
         WHERE u.IdUsuario = ?
     ');
-    $stmt->bind_param('i', $idUsuario);
+    $stmt->bind_param('i', $idUsuarioSeleccionado);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($usuarioSeleccionado, $roleSeleccionado);
+    $stmt->bind_result($nombreUsuarioSeleccionado, $roleUsuarioSeleccionado);
     $stmt->fetch();
-    
-    $_SESSION['usuarioseleccionado'] = $idUsuario;
-    $_SESSION['usuarioseleccionado_nombre'] = $usuarioSeleccionado;
-    $_SESSION['usuarioseleccionado_role'] = $roleSeleccionado;
+
+    $_SESSION['usuario_seleccionado'] = $idUsuarioSeleccionado;
+    $_SESSION['usuario_seleccionado_nombre'] = $nombreUsuarioSeleccionado;
+    $_SESSION['usuario_seleccionado_role'] = $roleUsuarioSeleccionado;
     $stmt->close();
 } else {
-    $idUsuario = $_SESSION['usuario'];
-    $usuarioSeleccionado = $_SESSION['usuario'];
-    $roleSeleccionado = $_SESSION['role'];
+    $idUsuarioSeleccionado = $idUsuarioSesion;
+    $nombreUsuarioSeleccionado = $nombreUsuarioSesion;
+    $roleUsuarioSeleccionado = $roleUsuarioSesion;
 }
 
-if (isset($_POST['delete_user']) && isset($_SESSION['panel_admin']) && $_SESSION['panel_admin'] == TRUE && isset($_SESSION['usuarioseleccionado'])) {
-    $idUsuarioEliminar = $_SESSION['usuarioseleccionado'];
+if (isset($_POST['delete_user']) && isset($_SESSION['panel_admin']) && $_SESSION['panel_admin'] == TRUE && isset($_SESSION['usuario_seleccionado'])) {
+    $idUsuarioEliminar = $_SESSION['usuario_seleccionado'];
 
-    if ($idUsuarioEliminar == $currentUserId) {
+    if ($idUsuarioEliminar == $idUsuarioSesion) {
         $_SESSION['error'] = "No puedes eliminar tu propia cuenta. Selecciona otro usuario.";
     } else {
         // Eliminar el usuario seleccionado
-        $stmt = $conn->prepare('DELETE FROM usuarios WHERE idUsuario = ?');
+        $stmt = $conn->prepare('DELETE FROM usuarios WHERE IdUsuario = ?');
         $stmt->bind_param('i', $idUsuarioEliminar);
 
         if ($stmt->execute()) {
             $_SESSION['cambio'] = TRUE;
-            unset($_SESSION['usuarioseleccionado']);
-            unset($_SESSION['usuarioseleccionado_nombre']);
-            unset($_SESSION['usuarioseleccionado_role']);
+            unset($_SESSION['usuario_seleccionado']);
+            unset($_SESSION['usuario_seleccionado_nombre']);
+            unset($_SESSION['usuario_seleccionado_role']);
         } else {
             $_SESSION['error'] = "Error al eliminar el usuario. Inténtelo de nuevo.";
         }
@@ -100,7 +116,7 @@ if (isset($_POST['delete_user']) && isset($_SESSION['panel_admin']) && $_SESSION
             <label for="user_id">Seleccionar usuario a eliminar:</label>
             <select class="form-control" id="user_id" name="user_id" required>
                 <?php foreach ($users as $user) { ?>
-                    <option value="<?php echo htmlspecialchars($user['id']); ?>" <?php echo ($user['id'] == $idUsuario) ? 'selected' : ''; ?>>
+                    <option value="<?php echo htmlspecialchars($user['id']); ?>" <?php echo ($user['id'] == $idUsuarioSeleccionado) ? 'selected' : ''; ?>>
                         <?php echo htmlspecialchars($user['name']); ?>
                     </option>
                 <?php } ?>
@@ -110,9 +126,9 @@ if (isset($_POST['delete_user']) && isset($_SESSION['panel_admin']) && $_SESSION
     </form>
 
     <form action="" method="post" class="py-2">
-        <?php if (isset($_SESSION['panel_admin']) && $_SESSION['panel_admin'] == TRUE && isset($usuarioSeleccionado)) { ?>
-            <p>Ahora tiene seleccionado al <?php echo $roleSeleccionado; ?> <?php echo $usuarioSeleccionado; ?> <br>
-            La eliminación de usuario es permanente e irreversible. Tenga cuidado.</p>
+        <?php if (isset($_SESSION['panel_admin']) && $_SESSION['panel_admin'] == TRUE && isset($nombreUsuarioSeleccionado)) { ?>
+            <p>Ahora tiene seleccionado al <span class="error"><?php echo $roleUsuarioSeleccionado; ?> <?php echo $nombreUsuarioSeleccionado; ?> </span></p>
+            <p>La eliminación de usuario es permanente e irreversible. Tenga cuidado.</p>
             <?php if (isset($_SESSION['error']) && $_SESSION['error'] !== '') { ?>
                 <p style="color:red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
             <?php } ?>

@@ -58,8 +58,8 @@ session_start();
                 <?php if (!isset($_SESSION["valido"]) || $_SESSION["valido"] !== TRUE) {
                         echo " <h2>Hazte miembro</h2>
                             <p>¿Quieres reservar o acceder a promociones especiales? Hazte miembro gratuitamente y disfruta los ohnigiris a otro nivel.
-                            <p>No tiene cuenta? <a href='pagina_registro'>regístrate aquí</a></p>
-                            <p>Ya tiene cuenta? <a href='pagina_registro'>Accede aquí</a></p>
+                            <p>No tiene cuenta? <a href='views/pagina_registro.php'>regístrate aquí</a></p>
+                            <p>Ya tiene cuenta? <a href='views/pagina_registro.php'>Accede aquí</a></p>
                     ";}
                     ?>
             </div>

@@ -121,6 +121,7 @@ if ($role == 'admin') {
                         $userStmt->close();
                     }
             ?>
+            <!-- texto plano no modificable-->
             <div class="m-2 mx-auto d-flex justify-content-center">
                 <div class="form-info" id="form_info-<?php echo $idCita?>">
                     <p>Cita #<?php echo $idCita?><br>
@@ -131,6 +132,7 @@ if ($role == 'admin') {
                     Fecha de la cita: <?php echo htmlspecialchars($formatted_date); ?><br>
                     Motivo de la cita: <?php echo htmlspecialchars($motivo_cita); ?></p>
                 </div>
+                <!-- texto modificable tras haber presionado el botón-->
                 <div class="form-container" id="form-<?php echo $idCita?>">
                     <form method="post" action="citas/actualizar_cita.php" class="p-3 my-3">
                         <label for='fecha_cita'>Fecha de la cita:</label>

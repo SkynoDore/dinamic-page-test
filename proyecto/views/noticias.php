@@ -58,12 +58,11 @@ if (isset($_SESSION['usuario'])) {
                         <label for="imagen">Imagen:</label><br>
                         <input type="file" name="imagen" id="imagen"><br>
                         <input class="btn btn-secondary mt-2" type="submit" value="Subir noticia">
+                    <p>(Solo se soportan imágenes de formato jpeg y png de máximo 2MB)</p>
                     </div>
                 </form>
             <?php } ?>
         </div>
-
-
 
         <?php
         // Consulta para obtener las noticias y el nombre del usuario que las creó

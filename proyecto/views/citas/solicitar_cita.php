@@ -3,7 +3,10 @@ session_start();
 include '../../scripts/bd.php';
 include('../../scripts/autentificador_usuario.php');
 
-$idUsuario = $_SESSION['usuario'];
+if (isset($_POST['user_id']) && $_POST['user_id'] !== '') {
+    $idUsuario = $_POST['user_id'];
+}else{
+$idUsuario = $_SESSION['usuario'];}
 $role = $_SESSION['role'];
 
 // Obtener y validar los datos del formulario

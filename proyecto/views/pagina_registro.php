@@ -33,19 +33,19 @@ include('../config.php');
             <form action="/proyecto/views/login/registrar.php" method="post">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input class="form-control" type="text" id="nombre" name="nombre" pattern="[A-Za-z ]{3,30}" required>
+                    <input class="form-control" type="text" id="nombre" name="nombre" maxlength="30" pattern="[A-Za-z ]{3,30}" required>
                 </div>
                 <div class="form-group">
                     <label for="apellido">Apellido</label>
-                    <input class="form-control" type="text" id="apellidos" name="apellidos" pattern="[A-Za-z ]{3,30}" required>
+                    <input class="form-control" type="text" id="apellidos" name="apellidos" maxlength="30" pattern="[A-Za-z ]{3,30}" required>
                 </div>
                 <div class="form-group">
                     <label for="phone">Usuario</label>
-                    <input class="form-control" type="text" id="usuario" name="usuario" pattern="{3,30}" placeholder="Ej: entre 1 y 12 caracteres" required>
+                    <input class="form-control" type="text" id="usuario" name="usuario" maxlength="12" pattern="{3,12}" placeholder="Ej: entre 1 y 12 caracteres" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Correo electrónico</label>
-                    <input class="form-control" type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" placeholder="Ej: Ohnigiri.rest@email.com" required>
+                    <input class="form-control" type="email" id="email" name="email" maxlength="45" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" placeholder="Ej: Ohnigiri.rest@email.com" required>
                 </div>
                 <div class="form-group">
                     <label for="telefono">Numero de teléfono</label>
@@ -53,7 +53,7 @@ include('../config.php');
 
                     <div class="form-group">
                         <label for="direccion">Dirección</label>
-                        <input class="form-control" type="text" id="direccion" name="direccion" pattern="[a-zA-Z0-9._%+-]{5,255}" placeholder="Ej: Calle Alonso cano 31, 28011" required>
+                        <input class="form-control" type="text" id="direccion" name="direccion" maxlength="255" pattern="[a-zA-Z0-9._%+-]{5,255}" placeholder="Ej: Calle Alonso cano 31, 28011" required>
                     </div>
                     <div class="form-group">
                         <label for="sexo">Sexo</label>

@@ -51,27 +51,54 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->close();
         }
     } else { // Si la acción es actualizar
-        // Manejar la imagen
-        if ($_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-            // Obtener la imagen antigua
-            $stmt = $conn->prepare("SELECT imagen FROM noticias WHERE idNoticia = ?");
-            $stmt->bind_param("i", $idNoticia);
-            $stmt->execute();
-            $stmt->bind_result($imagenAntigua);
-            $stmt->fetch();
-            $stmt->close();
+        $imagenRuta = null;
 
-            $nombreImagen = uniqid() . "." . pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
-            
-            if (move_uploaded_file($_FILES['imagen']['tmp_name'], "../../imagenes/$nombreImagen")) {
-                $imagenRuta = "imagenes/$nombreImagen";
+        if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] !== UPLOAD_ERR_NO_FILE) {
+            $error = $_FILES['imagen']['error'];
 
-                // Eliminar la imagen antigua del servidor
-                if (file_exists("../../$imagenAntigua")) {
-                    unlink("../../$imagenAntigua");
+            if ($error === UPLOAD_ERR_OK) {
+                // Verificar el tamaño del archivo (2MB = 2 * 1024 * 1024 bytes)
+                $max_file_size = 2 * 1024 * 1024; // 2MB
+                $pesoArchivo = filesize($_FILES['imagen']['tmp_name']);
+                if ($pesoArchivo > $max_file_size) {
+                    $_SESSION['error'] .= "El tamaño de la imagen no puede ser mayor a 2MB. ";
                 }
-            } else {
-                $_SESSION['error'] .= "Error al subir la nueva imagen. ";
+
+                // Verificar el tipo de archivo
+                $allowed_types = ['image/png', 'image/jpeg', 'image/jpg'];
+                $file_type = $_FILES['imagen']['type'];
+                if (!in_array($file_type, $allowed_types)) {
+                    $_SESSION['error'] .= "Solo se permiten archivos PNG, JPEG y JPG. ";
+                }
+
+                if ($_SESSION['error'] === '') {
+                    // Obtener la imagen antigua
+                    $stmt = $conn->prepare("SELECT imagen FROM noticias WHERE idNoticia = ?");
+                    $stmt->bind_param("i", $idNoticia);
+                    $stmt->execute();
+                    $stmt->bind_result($imagenAntigua);
+                    $stmt->fetch();
+                    $stmt->close();
+
+                    $nombreImagen = uniqid() . "." . pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+                    $directorio = '../../imagenes/';
+                    if (!is_dir($directorio)) {
+                        mkdir($directorio, 0755, true);
+                    }
+
+                    if (move_uploaded_file($_FILES['imagen']['tmp_name'], $directorio . $nombreImagen)) {
+                        $imagenRuta = "imagenes/$nombreImagen";
+
+                        // Eliminar la imagen antigua del servidor
+                        if (file_exists("../../$imagenAntigua")) {
+                            unlink("../../$imagenAntigua");
+                        }
+                    } else {
+                        $_SESSION['error'] .= "Error al mover la imagen subida. ";
+                    }
+                }
+            } elseif ($error === UPLOAD_ERR_INI_SIZE) {
+                $_SESSION['error'] .= "El tamaño del archivo excede el límite permitido por el servidor. ";
             }
         } else {
             // No se subió una nueva imagen, así que mantenemos la imagen actual

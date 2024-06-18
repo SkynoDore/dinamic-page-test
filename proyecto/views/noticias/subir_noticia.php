@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($error === UPLOAD_ERR_OK) {
             // Obtener el tamaño del archivo utilizando filesize()
             $pesoArchivo = filesize($_FILES['imagen']['tmp_name']);
-            echo "Peso del archivo: " . $pesoArchivo . " bytes<br>";
 
             // Verificar el tamaño del archivo (2MB = 2 * 1024 * 1024 bytes)
             $max_file_size = 2 * 1024 * 1024; // 2MB

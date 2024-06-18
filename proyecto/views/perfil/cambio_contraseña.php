@@ -5,6 +5,23 @@ include '../../scripts/bd.php';
 include('../../scripts/autentificador_usuario.php');
 
 $role = $_SESSION['role'];
+$idUsuarioSesion = $_SESSION['usuario'];
+$nombreUsuarioSesion = '';
+$roleUsuarioSesion = '';
+
+// Obtener el nombre de usuario de la sesión
+$stmt = $conn->prepare('
+    SELECT l.usuario, l.role 
+    FROM usuarios u
+    JOIN logins l ON u.IdUsuario = l.idUsuarioFK
+    WHERE u.IdUsuario = ?
+');
+$stmt->bind_param('i', $idUsuarioSesion);
+$stmt->execute();
+$stmt->store_result();
+$stmt->bind_result($nombreUsuarioSesion, $roleUsuarioSesion);
+$stmt->fetch();
+$stmt->close();
 
 if ($role == 'admin') {
     // Obtener la lista de usuarios si es administrador
@@ -24,9 +41,9 @@ if ($role == 'admin') {
     $userStmt->close();
 }
 
-// Seleccion usuario admin
+// Selección de usuario admin
 if (isset($_POST['user_id']) && $_POST['user_id'] !== '') {
-    $idUsuario = $_POST['user_id'];
+    $idUsuarioSeleccionado = $_POST['user_id'];
 
     // Obtener el usuario seleccionado
     $stmt = $conn->prepare('
@@ -35,25 +52,24 @@ if (isset($_POST['user_id']) && $_POST['user_id'] !== '') {
         JOIN logins l ON u.IdUsuario = l.idUsuarioFK
         WHERE u.IdUsuario = ?
     ');
-    $stmt->bind_param('i', $idUsuario);
+    $stmt->bind_param('i', $idUsuarioSeleccionado);
     $stmt->execute();
     $stmt->store_result();
     $stmt->bind_result($usuarioSeleccionado, $roleSeleccionado);
     $stmt->fetch();
 
-    $_SESSION['usuario_seleccionado'] = $idUsuario;
+    $_SESSION['usuario_seleccionado'] = $idUsuarioSeleccionado;
     $_SESSION['usuario_seleccionado_nombre'] = $usuarioSeleccionado;
     $_SESSION['usuario_seleccionado_role'] = $roleSeleccionado;
     $stmt->close();
 } else {
-    $idUsuario = $_SESSION['usuario'];
-    $usuarioSeleccionado = $_SESSION['usuario'];
-    $roleSeleccionado = $_SESSION['role'];
+    $idUsuarioSeleccionado = $idUsuarioSesion;
+    $usuarioSeleccionado = $nombreUsuarioSesion;
+    $roleSeleccionado = $roleUsuarioSesion;
 }
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,7 +82,6 @@ if (isset($_POST['user_id']) && $_POST['user_id'] !== '') {
     <script src="../../scripts/togglePassword.js"></script>
     <title>Cambiar contraseña</title>
 </head>
-
 <body>
     <main>
         <?php include('../../scripts/selector_de_barras.php'); ?>
@@ -77,14 +92,15 @@ if (isset($_POST['user_id']) && $_POST['user_id'] !== '') {
                     <label for="user_id">Seleccionar usuario a modificar:</label>
                     <select class="form-control" id="user_id" name="user_id" required>
                         <?php foreach ($users as $user) { ?>
-                            <option value="<?php echo htmlspecialchars($user['id']); ?>" <?php echo ($user['id'] == $idUsuario) ? 'selected' : ''; ?>>
+                            <option value="<?php echo htmlspecialchars($user['id']); ?>" <?php echo ($user['id'] == $idUsuarioSeleccionado) ? 'selected' : ''; ?>>
                                 <?php echo htmlspecialchars($user['name']); ?>
                             </option>
                         <?php } ?>
                     </select><br>
                     <button class="btn btn-dark" type="submit" id="enviar">Cambiar</button>
-                    <?php if(isset($_POST['user_id']) && $_POST['user_id'] !== '')
-                    $_SESSION['usuario_seleccionado'] = $_POST['user_id']; ?>
+                    <?php if(isset($_POST['user_id']) && $_POST['user_id'] !== '') {
+                        $_SESSION['usuario_seleccionado'] = $_POST['user_id']; 
+                    } ?>
                 <?php } ?>
             </form>
             <h1>Cambia tu contraseña</h1>
@@ -130,5 +146,4 @@ if (isset($_POST['user_id']) && $_POST['user_id'] !== '') {
         </div>
     </main>
 </body>
-
 </html>
