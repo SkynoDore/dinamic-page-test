@@ -51,28 +51,28 @@ if ($stmt->num_rows > 0) {
         // Ejecutar la declaración
         if ($stmt->execute()) {
             // La inserción fue exitosa
-            header('Location:/dinamic-page-test/index.php');
+            header('Location:/htdocs/index.php');
             exit();
         } else {
             echo "Ha habido un error, escribir a soporte";
         }
     } else {
         echo "Contraseña incorrecta";
-        echo "<a href='/dinamic-page-test/views/pagina_login.php'>Click aqui</a> para volver a intentar o espera 5 segundos y serás redirigido";
+        echo "<a href='/htdocs/views/pagina_login.php'>Click aqui</a> para volver a intentar o espera 5 segundos y serás redirigido";
         // JavaScript para redireccionar automáticamente
         echo "<script>
                 setTimeout(function(){
-                    window.location.href = '/dinamic-page-test/views/pagina_login.php';
+                    window.location.href = '/htdocs/views/pagina_login.php';
                 }, 5000);
               </script>";
     }
 } else {
     echo "Usuario no encontrado.";
-    echo "<a href='/dinamic-page-test/views/pagina_login.php'>Click aqui</a> para volver a intentar o espera 5 segundos y serás redirigido";
+    echo "<a href='/htdocs/views/pagina_login.php'>Click aqui</a> para volver a intentar o espera 5 segundos y serás redirigido";
     // JavaScript para redireccionar automáticamente
     echo "<script>
             setTimeout(function(){
-                window.location.href = /dinamic-page-test/views/pagina_login.php';
+                window.location.href = /htdocs/views/pagina_login.php';
             }, 5000);
           </script>";
 }

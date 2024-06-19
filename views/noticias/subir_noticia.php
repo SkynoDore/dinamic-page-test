@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         if ($stmt->execute()) {
                             // La inserción fue exitosa
                             $_SESSION['cambio'] = TRUE;
-                            header('Location: /dinamic-page-test/views/noticias.php');
+                            header('Location: /htdocs/views/noticias.php');
                             exit();
                         } else {
                             $_SESSION['error'] .= "Error en la ejecución de la consulta: " . $stmt->error . " ";
@@ -90,6 +90,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Redirigir a la página de noticias en caso de error o al finalizar
-header('Location: /dinamic-page-test/views/noticias.php');
+header('Location: /htdocs/views/noticias.php');
 exit();
 ?>

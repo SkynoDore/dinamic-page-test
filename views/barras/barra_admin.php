@@ -6,26 +6,26 @@
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand "><img src="/dinamic-page-test/photos/logo2prov.png" alt="" height="26"></a>
+                <a class="navbar-brand "><img src="/htdocs/photos/logo2prov.png" alt="" height="26"></a>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/dinamic-page-test/index.php">Inicio</a>
+                            <a class="nav-link active" aria-current="page" href="/htdocs/index.php">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/dinamic-page-test/views/perfil.php">Perfil</a>
+                            <a class="nav-link" href="/htdocs/views/perfil.php">Perfil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/dinamic-page-test/views/admin_usuarios.php">Administrar usuarios</a>
+                            <a class="nav-link" href="/htdocs/views/admin_usuarios.php">Administrar usuarios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/dinamic-page-test/views/citaciones.php">Administrar citaciones</a>
+                            <a class="nav-link" href="/htdocs/views/citaciones.php">Administrar citaciones</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/dinamic-page-test/views/noticias.php">Administrar noticias</a>
+                            <a class="nav-link" href="/htdocs/views/noticias.php">Administrar noticias</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/dinamic-page-test/views/login/logout.php">Cerrar sección</a>
+                            <a class="nav-link" href="/htdocs/views/login/logout.php">Cerrar sección</a>
                         </li>
                     </ul>
                 </div>

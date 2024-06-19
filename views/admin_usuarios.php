@@ -60,10 +60,10 @@ if ($role == 'admin') {
                     <!-- el formulario esta en el siguiente archivo, que a su vez se procesa en otro archivo -->
                     <div class="d-flex flex-column justify-content-center">
     <button class="btn btn-secondary m-2 w-100 " type="button" onclick="toggleForm('crear')">Crear nuevo usuario</button>
-    <form action="/dinamic-page-test/views/perfil/cambio_contraseña.php">
+    <form action="/htdocs/views/perfil/cambio_contraseña.php">
         <button class="btn btn-secondary m-2 w-100 " type="submit">Cambiar contraseña</button>
     </form>
-    <form action="/dinamic-page-test/views/perfil/eliminar_usuario.php">
+    <form action="/htdocs/views/perfil/eliminar_usuario.php">
         <button class="btn btn-secondary m-2 w-100 " type="submit">Eliminar usuario</button>
     </form>
 </div>
@@ -71,7 +71,7 @@ if ($role == 'admin') {
                     <div>
                     <div id="crearForm" style="display: none;">
                     <h2>Crear usuario</h2>
-                            <form action="/dinamic-page-test/views/login/registrar.php" method="post">
+                            <form action="/htdocs/views/login/registrar.php" method="post">
                                 <div class="form-group">
                                     <label for="sexo">Rol</label>
                                     <select class="form-control" name="role" id="role" required>
@@ -151,7 +151,7 @@ if ($role == 'admin') {
             <button class="btn btn-secondary mx-2" type="button" onclick="toggleForm('modificar')">Seleccionar usuario</button>
         </div>
         <div id="modificarForm" style="display: none;">
-        <form method="post" action="/dinamic-page-test/views/admin_usuarios.php" class="p-3 my-3">
+        <form method="post" action="/htdocs/views/admin_usuarios.php" class="p-3 my-3">
                 <label for='user_id'>Seleccionar usuario a modificar:</label>
                 <select class="form-control" id="user_id" name="user_id" required>
                     <?php foreach ($users as $user) { ?>

@@ -93,7 +93,7 @@ if (!empty($errors)) {
     foreach ($errors as $error) {
         echo "- $error\\n";
     }
-    echo "'); window.location.href = '/dinamic-page-test/views/pagina_registro.php';</script>";
+    echo "'); window.location.href = '/htdocs/views/pagina_registro.php';</script>";
     exit();
 }
 
@@ -130,11 +130,11 @@ if ($stmt->execute()) {
         echo "Ha habido un error, escribir a soporte"; //. $stmt->error;
     }
     if ($_SESSION['panel_admin'] == TRUE){
-        header('Location: /dinamic-page-test/views/admin_usuarios.php');
+        header('Location: /htdocs/views/admin_usuarios.php');
         $_SESSION['cambio'] = TRUE;
         exit();
     } else {
-        header('Location: /dinamic-page-test/index.php');
+        header('Location: /htdocs/index.php');
         exit();
     }
     

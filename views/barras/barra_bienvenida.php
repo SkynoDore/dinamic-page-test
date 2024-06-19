@@ -6,20 +6,20 @@
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand "><img src="/dinamic-page-test/photos/logo2prov.png" alt="" height="26"></a>
+                <a class="navbar-brand "><img src="/htdocs/photos/logo2prov.png" alt="" height="26"></a>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/dinamic-page-test/index.php">Inicio</a>
+                            <a class="nav-link active" aria-current="page" href="/htdocs/index.php">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/dinamic-page-test/views/noticias.php">Noticias</a>
+                            <a class="nav-link" href="/htdocs/views/noticias.php">Noticias</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/dinamic-page-test/views/pagina_login.php">Iniciar sección</a>
+                            <a class="nav-link" href="/htdocs/views/pagina_login.php">Iniciar sección</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/dinamic-page-test/views/pagina_registro.php">Registrarse</a>
+                            <a class="nav-link" href="/htdocs/views/pagina_registro.php">Registrarse</a>
                         </li>
                     </ul>
                 </div>

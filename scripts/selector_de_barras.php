@@ -1,7 +1,7 @@
 <?php
 
-// Define la raíz del dinamic-page-test usando la raíz del documento del servidor web
-define('PROJECT_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/dinamic-page-test/');
+// Define la raíz del htdocs usando la raíz del documento del servidor web
+define('PROJECT_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/htdocs/');
 
 if (!isset($_SESSION["valido"]) || $_SESSION["valido"] !== TRUE) {
     // Usuario no autenticado

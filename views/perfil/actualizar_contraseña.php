@@ -32,7 +32,7 @@ if ($stmt->num_rows > 0) {
         // Verificar si la nueva contraseña es la misma que la vieja
         if (password_verify($passwordnueva, $passwordvieja)) {
             $_SESSION['error'] = "La nueva contraseña no puede ser igual a la contraseña actual.";
-            header('Location: /dinamic-page-test/views/perfil/cambio_contraseña.php');
+            header('Location: /htdocs/views/perfil/cambio_contraseña.php');
             exit();
         }
 
@@ -46,26 +46,26 @@ if ($stmt->num_rows > 0) {
             
             if ($stmt->execute()) {
                 $_SESSION['cambio'] = TRUE;
-                header('Location: /dinamic-page-test/views/perfil/cambio_contraseña.php');
+                header('Location: /htdocs/views/perfil/cambio_contraseña.php');
                 exit();
             } else {
                 $_SESSION['error'] = "Ha habido un error procesando la solicitud, escribe a soporte.";
-                header('Location: /dinamic-page-test/views/perfil/cambio_contraseña.php');
+                header('Location: /htdocs/views/perfil/cambio_contraseña.php');
                 exit();
             }
         } else {
             $_SESSION['error'] = "La contraseña vieja es incorrecta.";
-            header('Location: /dinamic-page-test/views/perfil/cambio_contraseña.php');
+            header('Location: /htdocs/views/perfil/cambio_contraseña.php');
             exit();
         }
     } else {
         $_SESSION['error'] = "Las contraseñas no coinciden.";
-        header('Location: /dinamic-page-test/views/perfil/cambio_contraseña.php');
+        header('Location: /htdocs/views/perfil/cambio_contraseña.php');
         exit();
     }
 } else {
     $_SESSION['error'] = "Usuario no encontrado.";
-    header('Location: /dinamic-page-test/views/perfil/cambio_contraseña.php');
+    header('Location: /htdocs/views/perfil/cambio_contraseña.php');
     exit();
 }
 

@@ -67,7 +67,7 @@ if ($role == 'admin') {
         <?php if ($role != 'admin') { ?>
         <div class="container bg-light py-5">
             <h2>Solicitar cita</h2>
-            <form action="/dinamic-page-test/views/citas/solicitar_cita.php" method="post">
+            <form action="/htdocs/views/citas/solicitar_cita.php" method="post">
                 <div class="form-group">
                     <label for="fecha_cita">Fecha cita</label>
                     <input class="form-control" type="date" id="fecha_cita" name="fecha_cita" required>
@@ -89,7 +89,7 @@ if ($role == 'admin') {
         <?php if ($role == 'admin') { ?>
         <div class="container bg-light py-5">
             <h2>Asignar cita</h2>
-            <form method="post" action="/dinamic-page-test/views/citas/solicitar_cita.php" class="p-3 my-3">
+            <form method="post" action="/htdocs/views/citas/solicitar_cita.php" class="p-3 my-3">
                 <label for='user_id'>Usuario:</label>
                 <select class="form-control" id="user_id" name="user_id" required>
                     <?php foreach ($users as $user) { ?>

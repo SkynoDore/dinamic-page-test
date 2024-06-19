@@ -45,7 +45,7 @@ if (isset($_SESSION['usuario'])) {
         
             <?php if (isset($role) && $role == 'admin') { ?>
                 <h2>Subir una noticia</h2>
-                <form action="/dinamic-page-test/views/noticias/subir_noticia.php" method="post" enctype="multipart/form-data">
+                <form action="/htdocs/views/noticias/subir_noticia.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="titulo">Titulo</label>
                         <input class="form-control" type="text" id="titulo" name="titulo" required>
@@ -90,7 +90,7 @@ if (isset($_SESSION['usuario'])) {
                     ?>
                     <div class="news-item" id="form_info-<?php echo $idNoticia; ?>">
                         <h2><?php echo htmlspecialchars($row['titulo']); ?></h2>
-                        <img src="/dinamic-page-test/<?php echo htmlspecialchars($row['imagen']); ?>" alt="Imagen de la noticia" class="news-image">
+                        <img src="/htdocs/<?php echo htmlspecialchars($row['imagen']); ?>" alt="Imagen de la noticia" class="news-image">
                         <p><?php echo nl2br(htmlspecialchars($row['cuerpo'])); ?></p>
                         <hr>
                         <p class="news-author">Autor: <?php echo htmlspecialchars($row['nombre']); ?><br>
@@ -108,7 +108,7 @@ if (isset($_SESSION['usuario'])) {
                             <input type="text" name="titulo" value="<?php echo htmlspecialchars($row['titulo']); ?>" required><br>
                             
                             <label for="imagen">Imagen:</label><br>
-                            <img src="/dinamic-page-test/<?php echo htmlspecialchars($row['imagen']); ?>" alt="Imagen actual" class="news-image">
+                            <img src="/htdocs/<?php echo htmlspecialchars($row['imagen']); ?>" alt="Imagen actual" class="news-image">
                             <input type="file" name="imagen" class="m-2"><br>
                             
                             <label for="cuerpo">Cuerpo:</label><br>

@@ -27,7 +27,7 @@ include('../config.php');
                 <h1>Iniciar sección</h1>
                 <p>No tiene cuenta? <a href="pagina_registro">regístrate aquí</a></p>
                 <!--la funcion se llamara a cualquier cambio del formulario.-->
-                <form action="/dinamic-page-test/views/login/login.php" method="post">
+                <form action="/htdocs/views/login/login.php" method="post">
                     <div class="form-group">
                         <label for="usuario">Usuario</label>
                         <input class="form-control" type="text" id="usuario" name="usuario" placeholder="usuario" required>

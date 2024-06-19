@@ -104,7 +104,7 @@ if (isset($_POST['user_id']) && $_POST['user_id'] !== '') {
                 <?php } ?>
             </form>
             <h1>Cambia tu contraseña</h1>
-            <form action="/dinamic-page-test/views/perfil/actualizar_contraseña.php" method="post" class="py-2">
+            <form action="/htdocs/views/perfil/actualizar_contraseña.php" method="post" class="py-2">
                 <?php if ($role == 'admin') {
                     echo "Ahora tiene seleccionado al $roleSeleccionado $usuarioSeleccionado <br>";
                 } ?>

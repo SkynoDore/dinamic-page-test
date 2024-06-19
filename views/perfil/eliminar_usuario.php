@@ -87,7 +87,7 @@ if (isset($_POST['delete_user']) && isset($_SESSION['panel_admin']) && $_SESSION
         }
 
         $stmt->close();
-        header('Location: /dinamic-page-test/views/perfil/eliminar_usuario.php');
+        header('Location: /htdocs/views/perfil/eliminar_usuario.php');
         exit();
     }
 }

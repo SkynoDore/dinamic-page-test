@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Ejecutar la declaración
             if ($stmt->execute()) {
                 $_SESSION['cambio'] = TRUE;
-                header('Location: /dinamic-page-test/views/noticias.php');
+                header('Location: /htdocs/views/noticias.php');
                 exit();
             } else {
                 $_SESSION['error'] .= "Error en la ejecución de la consulta: " . $stmt->error . " ";
@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Ejecutar la declaración
                 if ($stmt->execute()) {
                     $_SESSION['cambio'] = TRUE;
-                    header('Location: /dinamic-page-test/views/noticias.php');
+                    header('Location: /htdocs/views/noticias.php');
                     exit();
                 } else {
                     $_SESSION['error'] .= "Error en la ejecución de la consulta: " . $stmt->error . " ";
@@ -134,12 +134,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Si hay errores, redirigir de nuevo a la página de noticias
     if ($_SESSION['error'] !== '') {
-        header('Location: /dinamic-page-test/views/noticias.php');
+        header('Location: /htdocs/views/noticias.php');
         exit();
     }
 } else {
     $_SESSION['error'] .= "Método de solicitud no válido. ";
-    header('Location: /dinamic-page-test/views/noticias.php');
+    header('Location: /htdocs/views/noticias.php');
     exit();
 }
 

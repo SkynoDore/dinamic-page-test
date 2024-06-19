@@ -46,7 +46,7 @@ if (!isset($_SESSION['error']) || $_SESSION['error'] === '') {
         if ($stmt->execute()) {
             // La inserción fue exitosa
             $_SESSION['cita'] = TRUE;
-            header('Location: /dinamic-page-test/views/citaciones.php');
+            header('Location: /htdocs/views/citaciones.php');
             exit();
         } else {
             $_SESSION['error'] .= "Error en la ejecución de la consulta: " . $stmt->error . " ";
@@ -55,11 +55,11 @@ if (!isset($_SESSION['error']) || $_SESSION['error'] === '') {
         $stmt->close();
     }
 } else {
-    header('Location: /dinamic-page-test/views/citaciones.php');
+    header('Location: /htdocs/views/citaciones.php');
     exit();
 }
 
 $conn->close();
-header('Location: /dinamic-page-test/views/citaciones.php');
+header('Location: /htdocs/views/citaciones.php');
 exit();
 ?>

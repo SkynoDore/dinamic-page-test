@@ -46,6 +46,6 @@ if ($action == 'update') {
 $stmt->close();
 $conn->close();
 
-header('Location: /dinamic-page-test/views/citaciones.php');
+header('Location: /htdocs/views/citaciones.php');
 exit();
 ?>

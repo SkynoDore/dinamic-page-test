@@ -57,11 +57,11 @@ if ($stmt->num_rows > 0) {
             // Redirigir según si se está en el panel de admin o no
             if (isset($_SESSION['panel_admin']) && $_SESSION['panel_admin'] == TRUE) {
                 $_SESSION['cambio'] = TRUE;
-                header('Location: /dinamic-page-test/views/admin_usuarios.php');
+                header('Location: /htdocs/views/admin_usuarios.php');
                 exit();
             } else {
                 $_SESSION['cambio'] = TRUE;
-                header('Location: /dinamic-page-test/views/perfil.php');
+                header('Location: /htdocs/views/perfil.php');
                 exit();
             }
         } else {
@@ -76,20 +76,20 @@ if ($stmt->num_rows > 0) {
 
             if ($stmt->execute()) {
                 $_SESSION['cambio'] = TRUE;
-                header('Location: /dinamic-page-test/views/perfil.php');
+                header('Location: /htdocs/views/perfil.php');
                 exit();
             } else {
                 echo "Error al actualizar los datos del usuario.";
             }
         } else {
             $_SESSION['error'] .= "No se ha realizado ningún cambio, la contraseña es incorrecta. ";
-            header('Location: /dinamic-page-test/views/perfil.php');
+            header('Location: /htdocs/views/perfil.php');
             exit();
         }
     }
 } else {
     $_SESSION['error'] .= "No se ha realizado ningún cambio, usuario no encontrado. ";
-    header('Location: /dinamic-page-test/views/perfil.php');
+    header('Location: /htdocs/views/perfil.php');
     exit();
 }
 
