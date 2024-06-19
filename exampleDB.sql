@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 11-06-2024 a las 20:43:16
+-- Tiempo de generación: 18-06-2024 a las 21:29:27
 -- Versión del servidor: 8.2.0
 -- Versión de PHP: 8.3.0
 
@@ -37,15 +37,16 @@ CREATE TABLE IF NOT EXISTS `citas` (
   `motivo_cita` text COLLATE utf8mb3_unicode_ci NOT NULL,
   PRIMARY KEY (`idCita`),
   KEY `idUsuarioFK` (`idUsuarioFK`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `citas`
 --
 
 INSERT INTO `citas` (`idCita`, `idUsuarioFK`, `fecha_cita`, `motivo_cita`) VALUES
-(9, 29, '2024-06-18', 'A'),
-(10, 26, '2024-06-12', 'Prueba');
+(12, 26, '2024-06-19', 'Aa'),
+(15, 26, '2024-06-19', 'Si'),
+(16, 28, '2024-06-25', 'Prueba cita creada por admin para otro usuario');
 
 -- --------------------------------------------------------
 
@@ -63,20 +64,18 @@ CREATE TABLE IF NOT EXISTS `logins` (
   `role` varchar(8) COLLATE utf8mb3_unicode_ci NOT NULL,
   PRIMARY KEY (`IdLogin`),
   KEY `idUsuarioFK` (`idUsuarioFK`)
-) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `logins`
 --
 
 INSERT INTO `logins` (`IdLogin`, `fecha_login`, `idUsuarioFK`, `usuario`, `password`, `role`) VALUES
-(78, '0000-00-00 00:00:00', 26, 'Slytrox', '$2y$10$bijmcGvgL1ck6RCS9xrUYOoTow/qpvCwLWE8MgWr7VuO1wjES0U4q', 'admin'),
-(79, '2024-06-11 15:50:08', 26, 'Slytrox', '$2y$10$bijmcGvgL1ck6RCS9xrUYOoTow/qpvCwLWE8MgWr7VuO1wjES0U4q', 'admin'),
-(80, '0000-00-00 00:00:00', 27, 'usuario123', '$2y$10$CRT9VeHpwuAgVibYPSShKumeGFbQU7I9CokvNL3XVu1IXtjC3n3ua', 'usuario'),
-(81, '0000-00-00 00:00:00', 28, 'Prueba123', '$2y$10$2BdQgKgP2ARuTIyfMob4H.vPgTRU.JSSBtIPqekJ3LQwhGdKKNfAu', 'usuario'),
-(82, '0000-00-00 00:00:00', 29, 'asddDE', '$2y$10$G50SbXhu8xG8CjWHhzyzW./2.itbVZNXrrCWVijP9.vMF2Mrxq72O', 'usuario'),
-(83, '2024-06-11 16:19:22', 26, 'Slytrox', '$2y$10$bijmcGvgL1ck6RCS9xrUYOoTow/qpvCwLWE8MgWr7VuO1wjES0U4q', 'admin'),
-(84, '2024-06-11 20:40:03', 28, 'Prueba123', '$2y$10$2BdQgKgP2ARuTIyfMob4H.vPgTRU.JSSBtIPqekJ3LQwhGdKKNfAu', 'usuario');
+(111, '2024-06-18 20:37:15', 28, 'Prueba123', '$2y$10$heuUjgn9.RO/eOZh03HztOf3jZBKsIIIOlbveOU3odWZ7CYm3q2Ye', 'usuario'),
+(112, '2024-06-18 20:38:09', 26, 'Slytrox', '$2y$10$X/yNonNSzcCHehW7ByCgOeGk1NszPluT67.dnNOqZ/HFU1zzAUQLC', 'admin'),
+(113, '2024-06-18 20:44:14', 36, 'Admin', '$2y$10$5KSSt6.gUQ.6a7P/rU9Jme0Satx5XZvPDNy1VDsE4zLxIyRdTRbuq', 'admin'),
+(115, '2024-06-18 21:00:10', 38, 'ultimotest', '$2y$10$7QyXpCUpTvaIww0QUQQ9/eHNILcoU.mrj0.E0SrlQlrjinvtrSq6q', 'usuario'),
+(116, '2024-06-18 21:16:00', 26, 'Slytrox', '$2y$10$X/yNonNSzcCHehW7ByCgOeGk1NszPluT67.dnNOqZ/HFU1zzAUQLC', 'admin');
 
 -- --------------------------------------------------------
 
@@ -94,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `noticias` (
   `idUserFK` int NOT NULL,
   PRIMARY KEY (`idNoticia`),
   KEY `idUserFK` (`idUserFK`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `noticias`
@@ -112,26 +111,26 @@ INSERT INTO `noticias` (`idNoticia`, `titulo`, `cuerpo`, `imagen`, `fecha`, `idU
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `IdUsuario` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(30) COLLATE utf8mb3_unicode_ci NOT NULL,
-  `apellidos` varchar(30) COLLATE utf8mb3_unicode_ci NOT NULL,
-  `email` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `nombre` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `apellidos` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `email` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `telefono` varchar(9) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `fecha_nacimiento` date NOT NULL,
   `fecha_alta` date NOT NULL,
   `direccion` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `sexo` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   PRIMARY KEY (`IdUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`IdUsuario`, `nombre`, `apellidos`, `email`, `telefono`, `fecha_nacimiento`, `fecha_alta`, `direccion`, `sexo`) VALUES
-(26, 'Gabriel', 'Suarez', 'gabriel@correo.com', '123123123', '2002-12-04', '2024-06-11', 'Informacion condifencial', 'hombre'),
-(27, 'Usuario', 'Ejemplo', 'asdgaseE@correo.com', '123123123', '2000-12-12', '2024-06-11', 'aa', 'hombre'),
-(28, 'Abejorro', 'asdasd', '123@homt.com', '123123123', '2024-06-03', '2024-06-11', 'Aasda', 'hombre'),
-(29, 'Prueba', 'ejemplo', 'asd@asd.com', '123123123', '2024-05-28', '2024-06-11', 'AAAAAAA', 'hombre');
+(26, 'Gabriel', 'Vich', 'Gabr@correo.com', '123123123', '2002-12-04', '2024-06-11', 'aa', 'hombre'),
+(28, 'Abejorro', 'apellido cambiado', 'correoaAaa@homt.com', '123123123', '2024-06-03', '2024-06-11', 'direccion cambiada', 'hombre'),
+(36, 'Admin', 'prueba', 'admin@correo.es', '123123123', '2024-05-26', '2024-06-18', 'Correo cambiado desde Slytrox', 'hombre'),
+(38, 'UltimaPrueba', '123456789123456789123456789123456789123456789', 'gab@ges.es', '123123123', '2024-05-26', '2024-06-18', 'Calle', 'hombre');
 
 --
 -- Restricciones para tablas volcadas

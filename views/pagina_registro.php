@@ -33,11 +33,11 @@ include('../config.php');
             <form action="/dinamic-page-test/views/login/registrar.php" method="post">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input class="form-control" type="text" id="nombre" name="nombre" maxlength="30" pattern="[A-Za-z ]{3,30}" required>
+                    <input class="form-control" type="text" id="nombre" name="nombre" maxlength="30" pattern="[A-Za-záéíóúüÁÉÍÓÚÜñÑ ]{3,30}" required>
                 </div>
                 <div class="form-group">
                     <label for="apellido">Apellido</label>
-                    <input class="form-control" type="text" id="apellidos" name="apellidos" maxlength="30" pattern="[A-Za-z ]{3,30}" required>
+                    <input class="form-control" type="text" id="apellidos" name="apellidos" maxlength="30" pattern="[A-Za-záéíóúüÁÉÍÓÚÜñÑ ]{3,30}" required>
                 </div>
                 <div class="form-group">
                     <label for="phone">Usuario</label>
@@ -53,7 +53,7 @@ include('../config.php');
 
                     <div class="form-group">
                         <label for="direccion">Dirección</label>
-                        <input class="form-control" type="text" id="direccion" name="direccion" maxlength="255" pattern="[a-zA-Z0-9._%+-]{5,255}" placeholder="Ej: Calle Alonso cano 31, 28011" required>
+                        <input class="form-control" type="text" id="direccion" name="direccion" maxlength="255" pattern="[A-Za-z0-9áéíóúüÁÉÍÓÚÜñÑ.,\- ]{5,255}" placeholder="Ej: Calle Alonso cano 31, 28011" required>
                     </div>
                     <div class="form-group">
                         <label for="sexo">Sexo</label>
