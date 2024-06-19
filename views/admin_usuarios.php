@@ -82,11 +82,11 @@ if ($role == 'admin') {
                                 </div>
                                 <div class="form-group">
                                     <label for="nombre">Nombre</label>
-                                    <input class="form-control" type="text" id="nombre" name="nombre" pattern="[A-Za-z ]{3,30}" required>
+                                    <input class="form-control" type="text" id="nombre" name="nombre" pattern="[A-Za-záéíóúüÁÉÍÓÚÜñÑ ]{3,30}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="apellido">Apellido</label>
-                                    <input class="form-control" type="text" id="apellidos" name="apellidos" pattern="[A-Za-z ]{3,30}" required>
+                                    <input class="form-control" type="text" id="apellidos" name="apellidos" pattern="[A-Za-záéíóúüÁÉÍÓÚÜñÑ ]{3,30}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Usuario</label>
@@ -102,7 +102,7 @@ if ($role == 'admin') {
 
                                     <div class="form-group">
                                         <label for="direccion">Dirección</label>
-                                        <input class="form-control" type="text" id="direccion" name="direccion" pattern="[a-zA-Z0-9._%+-]{5,255}" placeholder="Ej: Calle Alonso cano 31, 28011" required>
+                                        <input class="form-control" type="text" id="direccion" name="direccion" pattern="[A-Za-z0-9áéíóúüÁÉÍÓÚÜñÑ.,\- ]{5,255}" placeholder="Ej: Calle Alonso cano 31, 28011" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="sexo">Sexo</label>
