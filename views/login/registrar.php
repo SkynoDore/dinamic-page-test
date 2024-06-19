@@ -11,17 +11,22 @@ if ($conn->connect_error) {
 // Array para almacenar los errores
 $errors = array();
 
-// Obtener y validar los datos del formulario
-$user = trim($_POST['usuario']);
-$nombre = ($_POST['nombre']);
-$apellidos = ($_POST['apellidos']);
-$email = trim($_POST['email']);
-$pass = trim($_POST['password']);
-$pass2 = trim($_POST['password2']);
-$telefono = trim($_POST['telefono']);
-$fecha_nacimiento = trim($_POST['fecha_nacimiento']);
-$direccion = trim($_POST['direccion']);
-$sexo = trim($_POST['sexo']);
+
+// Obtener y sanear los datos del formulario
+$user = trim(strip_tags(htmlentities($_POST['usuario'])));
+$nombre = trim(strip_tags(htmlentities($_POST['nombre'])));
+$apellidos = trim(strip_tags(htmlentities($_POST['apellidos'])));
+$email = trim(strip_tags(htmlentities($_POST['email'])));
+$pass = trim(strip_tags(htmlentities($_POST['password'])));
+$pass2 = trim(strip_tags(htmlentities($_POST['password2'])));
+$telefono = trim(strip_tags(htmlentities($_POST['telefono'])));
+$fecha_nacimiento = trim(strip_tags(htmlentities($_POST['fecha_nacimiento'])));
+$direccion = trim(strip_tags(htmlentities($_POST['direccion'])));
+$sexo = trim(strip_tags(htmlentities($_POST['sexo'])));
+
+$fecha_alta = date('Y-m-d');
+
+$fecha_login = date('Y-m-d H:i:s'); //devolvera algo como 2024-05-30 17:12:34
 
 // Asignar el rol en función del rol del usuario que está creando la cuenta
 if (!isset($_SESSION['role']) || (isset($_SESSION['role']) && $_SESSION['role'] !== 'admin')) {
@@ -31,20 +36,6 @@ if (!isset($_SESSION['role']) || (isset($_SESSION['role']) && $_SESSION['role'] 
     $role = isset($_POST['role']) ? $_POST['role'] : 'usuario';
 }
 
-
-$fecha_alta = date('Y-m-d');
-
-$fecha_login = date('Y-m-d H:i:s'); //devolvera algo como 2024-05-30 17:12:34
-
-// Protección contra XSS
-$user = strip_tags(htmlentities($user));
-$nombre = strip_tags(htmlentities($nombre));
-$apellidos = strip_tags(htmlentities($apellidos));
-$email = strip_tags(htmlentities($email));
-$telefono = strip_tags(htmlentities($telefono));
-$fecha_nacimiento = strip_tags(htmlentities($fecha_nacimiento));
-$direccion = strip_tags(htmlentities($direccion));
-$sexo = strip_tags(htmlentities($sexo));
 
 // Validar longitud de usuario y contraseña
 if (strlen($user) < 3 || strlen($user) > 12 || !preg_match("/^[a-zA-Z0-9_]+$/", $user)) {

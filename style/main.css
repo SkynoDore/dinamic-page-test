@@ -12071,5 +12071,6 @@ section {
 }
 
 .news-container img {
-  max-width: 400px;
+  width: 380px;
+  max-width: 100%;
 }/*# sourceMappingURL=main.css.map */
