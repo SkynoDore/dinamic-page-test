@@ -22,7 +22,7 @@
                             <a class="nav-link" href="/dinamic-page-test/views/citaciones.php">Citaciones</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/dinamic-page-test/views/login/logout.php">Cerrar sección</a>
+                            <a class="nav-link" href="/dinamic-page-test/views/login/logout.php">Cerrar sesión</a>
                         </li>
                     </ul>
                 </div>
