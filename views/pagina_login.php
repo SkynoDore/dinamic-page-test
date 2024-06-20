@@ -25,7 +25,7 @@ include('../config.php');
 
             <div class="container bg-light py-5">
                 <h1>Iniciar sesión</h1>
-                <p>No tiene cuenta? <a href="pagina_registro">regístrate aquí</a></p>
+                <p>No tiene cuenta? <a href="pagina_registro.php">regístrate aquí</a></p>
                 <!--la funcion se llamara a cualquier cambio del formulario.-->
                 <form action="/dinamic-page-test/views/login/login.php" method="post">
                     <div class="form-group">
